@@ -55,7 +55,7 @@ module I18n
         # serialize :interpolations, Array
 
         translates :value
-        globalize_accessors
+        # globalize_accessors
 
         class << self
           def locale(locale)
