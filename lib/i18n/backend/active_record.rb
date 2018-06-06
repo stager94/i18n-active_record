@@ -65,7 +65,7 @@ module I18n
           if result.empty?
             nil
           elsif result.first.key == key
-            result.first.send "value_translations_#{locale}"
+            result.first.send "value_#{locale}"
           else
             result = result.inject({}) do |hash, translation|
               hash.deep_merge build_translation_hash_by_key(key, translation, locale)
@@ -83,7 +83,7 @@ module I18n
           end
           translation_nested_keys = translation.key.slice(chop_range).split(FLATTEN_SEPARATOR)
           translation_nested_keys.each.with_index.inject(hash) do |iterator, (key, index)|
-            iterator[key] = translation_nested_keys[index + 1] ?  {} : translation.send "value_translations_#{locale}"
+            iterator[key] = translation_nested_keys[index + 1] ?  {} : translation.send("value_#{locale}")
             iterator[key]
           end
           hash
