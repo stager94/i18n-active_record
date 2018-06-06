@@ -57,9 +57,9 @@ module I18n
           end
 
           result = if key == ''
-            Translation.all.reload
+            Translation.all
           else
-            Translation.lookup(key).reload
+            Translation.lookup(key)
           end
 
           if result.empty?
