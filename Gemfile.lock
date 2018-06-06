@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/globalize/globalize
+  revision: 2ae107f750ed3448d9dda70e15676a61820ce53b
+  branch: master
+  specs:
+    globalize (5.1.0)
+      activemodel (>= 4.2, < 5.3)
+      activerecord (>= 4.2, < 5.3)
+      request_store (~> 1.0)
+
 PATH
   remote: .
   specs:
@@ -20,6 +30,10 @@ GEM
       tzinfo (~> 1.1)
     arel (7.1.4)
     concurrent-ruby (1.0.5)
+    globalize-accessors (0.2.1)
+      globalize (~> 5.0, >= 5.0.0)
+    hstore_translate (2.0.0)
+      activerecord (>= 4.2.0)
     i18n (0.8.1)
     metaclass (0.0.4)
     minitest (5.10.1)
@@ -27,7 +41,10 @@ GEM
       metaclass (~> 0.0.1)
     mysql2 (0.4.5)
     pg (0.20.0)
+    rack (2.0.5)
     rake (12.0.0)
+    request_store (1.4.1)
+      rack (>= 1.4)
     sqlite3 (1.3.13)
     test_declarative (0.0.5)
     thread_safe (0.3.6)
@@ -40,6 +57,9 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   bundler
+  globalize!
+  globalize-accessors
+  hstore_translate
   i18n-active_record!
   minitest
   mocha
@@ -50,4 +70,4 @@ DEPENDENCIES
   test_declarative
 
 BUNDLED WITH
-   1.15.1
+   1.16.0

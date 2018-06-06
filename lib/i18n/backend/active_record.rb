@@ -57,24 +57,24 @@ module I18n
           end
 
           result = if key == ''
-            Translation.locale(locale).all
+            Translation.all
           else
-            Translation.locale(locale).lookup(key)
+            Translation.lookup(key)
           end
 
           if result.empty?
             nil
           elsif result.first.key == key
-            result.first.value
+            result.first.send "value_translations_#{locale}"
           else
             result = result.inject({}) do |hash, translation|
-              hash.deep_merge build_translation_hash_by_key(key, translation)
+              hash.deep_merge build_translation_hash_by_key(key, translation, locale)
             end
             result.deep_symbolize_keys
           end
         end
 
-        def build_translation_hash_by_key(lookup_key, translation)
+        def build_translation_hash_by_key(lookup_key, translation, locale)
           hash = {}
           if lookup_key == ''
             chop_range = 0..-1
@@ -83,7 +83,7 @@ module I18n
           end
           translation_nested_keys = translation.key.slice(chop_range).split(FLATTEN_SEPARATOR)
           translation_nested_keys.each.with_index.inject(hash) do |iterator, (key, index)|
-            iterator[key] = translation_nested_keys[index + 1] ?  {} : translation.value
+            iterator[key] = translation_nested_keys[index + 1] ?  {} : translation.send "value_translations_#{locale}"
             iterator[key]
           end
           hash
